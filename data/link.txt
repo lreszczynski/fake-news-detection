@@ -1,0 +1,6 @@
+pierwszy zbior - https://www.kaggle.com/hamditarek/fake-news-detection-on-twitter-eda/data
+
+kolejne zbiory ze strony https://www.zubiaga.org/datasets/
+drugi zbior - PHEME dataset for Rumour Detection and Veracity Classification
+X trzeci zbior - PHEME dataset of rumours and non-rumours
+czwarty zbior - PHEME rumour dataset
