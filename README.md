@@ -1,10 +1,31 @@
 # Fake news detection on social platforms
 
-This is a project demonstrating accuracy of selected machine learning classification algorithms (NN, SVM, LR, RF, NB, AdaBoost, KNN) combined with word embeddings (BOW, W2V and a custom set of features) in a task of deciding whether a comment/post is a fake news or not. The only information that's being taken into account is the text of a comment - that allows a system to be used on any platform. The accuracy results are an average of 10-fold cross-validation.
+This is a project demonstrating the accuracy of selected machine learning classification algorithms (NN, SVM, LR, RF, NB, AdaBoost, KNN) combined with word embeddings (BOW, W2V and a custom set of features) in the task of determining whether a comment/post is fake news or not. The only information that is taken into account is the text of the comment - this allows the system to be used on any platform as it does not rely on specific metadata available on individual social networks. Accuracy scores are the average of 10-fold cross-validation.
+
+## Custom set of features
+
+The table below presents a set of linguistic features based on the work of: Pedro Henrique Arruda Faustini and Thiago Ferreira Covões. Fake news detection in multiple platforms and languages. Expert Syst. Appl.,158:113503, 2020.
+
+This set has been extended with several readability measures available in the Textstat library, parts of speech such as modal verbs, prepositions and pronouns, and additionally we took into account non-informative words, punctuation and statistical values for word and sentence length. The values of most of these features represent proportions based on either text or word length and fall within the 0-1 boundary already at the matrix filling stage, but for some features such as the Flesch Readability Index, which operates on a range of values from 0-100, we had to additionally scale some columns to the 0-1 range. This is important because deep learning works best within the 0-1 boundary. The readability measures that were used, such as the Flesch Readability Index, are designed to measure the degree of difficulty in understanding a given text in English. The lower the index, the more difficult the text is to understand. The value is calculated from the number of words, syllables and sentences in the text.
+
+| Id | Feature                 | Id | Feature                 |
+|----|-------------------------|----|-------------------------|
+| 1  | Flesch reading ease     | 13 | Number of words         |
+| 2  | SMOG index              | 14 | Number of sentences     |
+| 3  | Coleman-Liau index      | 15 | Adjectives              |
+| 4  | Uppercase letters       | 16 | Nouns                   |
+| 5  | Exclamation marks       | 17 | Verbs                   |
+| 6  | Question marks          | 18 | Adverbs                 |
+| 7  | Unique words            | 19 | Prepositions            |
+| 8  | Uninformative words     | 20 | Pronouns                |
+| 9  | Punctuation             | 21 | Personal pronouns       |
+| 10 | Long words              | 22 | Modal verbs             |
+| 11 | Average word length     | 23 | Sentiment analysis      |
+| 12 | Average sentence length | 24 | Word2Vec representation |
 
 ## Results
 
-While the Support Vector Machine turned out to be the best classifier in this competition, the Random Forest classifier was the best when it came to detecting misinformation, as it achieved the lowest error on confussion matrices (0.31 on the example figure). When it comes to misinformation it is important to have the lowest amount of fake news getting detected as a non-threatening messages, as the damage caused by these can be significant.
+The Support Vector Machine proved to be the best classifier in this competition, achieving more than 86% accuracy in one of the sets. When it comes to disinformation, it is important that as little as possible fake news is detected as non-threatening messages, as the damage it causes can be considerable, especially in areas such as politics or medicine. The Random Forest classifier certainly deserves a special mention in this respect, as it excelled in disinformation detection by achieving the lowest error on the confusion matrix by detecting the highest percentage of false information (0.69 in the example figure), at the cost of a slightly lower than average accuracy in evaluating safe news (0.83).
 
 | Dataset | Word Embeddings        | NN                   | **SVM**                  | LR                   | RF                   | NB                   | AdaBoost             | KNN 3                | KNN 5                | KNN 7                |
 | ------- | ---------------------- | -------------------- | ------------------------ | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- | -------------------- |
