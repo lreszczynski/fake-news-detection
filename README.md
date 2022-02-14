@@ -73,7 +73,7 @@ The Support Vector Machine proved to be the best classifier in this competition,
 ## Sample of generated figures (in Polish)
 
 ![bag of words](./images/conf_matrix_first_bow.png)
-Confusion matrices (Bag of Words and first dataset)
+Confusion matrices (Bag of Words embeddings, first dataset)
 
 ![features](./images/features_first.png)
-The most important features (first dataset)
+The most important features (Custom features, first dataset)
